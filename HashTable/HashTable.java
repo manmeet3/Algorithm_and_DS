@@ -19,13 +19,14 @@ public class HashTable<K, V> {
     public int getSize(){
         return size;
     }
-
+    // Method for resetting the hashtable
     public void emptyTable(){
         for (int i=0;i<size;i++){
             table[i] = null;
         }
     }
-
+    
+    // Fetch Value based on key
     public V get(K key){
         int hash = hash(key) % TABLE_SIZE;
         if (table[hash] == null) return null;
@@ -42,7 +43,8 @@ public class HashTable<K, V> {
             }
         }
     }
-
+    
+    // Insert into hashtable
     public void put(K key, V value){
         int hash = hash(key) % TABLE_SIZE;
         if (table[hash] == null) {
@@ -61,7 +63,8 @@ public class HashTable<K, V> {
         size++;
         // check size here and resize if necessary
     }
-
+   
+    // Remove from hashtable if the element exists
     public void remove (K key){
         int hash = hash(key) % TABLE_SIZE;
 
@@ -81,14 +84,16 @@ public class HashTable<K, V> {
             }
         }
     }
-
+    
+    // Hashing function based on hashCode()
     private int hash(K key){
         int hashVal = key.hashCode();
         hashVal %= TABLE_SIZE;
         if (hashVal < 0) hashVal += TABLE_SIZE;
         return hashVal;
     }
-
+   
+    // Print all values inside the table.
     public void printHashTable(){
         for (int i=0;i<TABLE_SIZE;i++){
             System.out.print("\nIndex " + (i+1) + " : ");
