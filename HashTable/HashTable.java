@@ -1,4 +1,3 @@
-
 /**
  * Created by manmeet on 9/7/16.
  */
@@ -6,7 +5,7 @@ public class HashTable<K, V> {
 
     private int TABLE_SIZE;   // initial size
     private int size;
-    private HashEntry[] table;
+    private HashEntry<K,V>[] table;
 
 
     HashTable(int ts) {           // constructor to initialize all values
@@ -27,9 +26,9 @@ public class HashTable<K, V> {
         }
     }
 
-    public int get(String key){
+    public V get(K key){
         int hash = hash(key) % TABLE_SIZE;
-        if (table[hash] == null) return -1;
+        if (table[hash] == null) return null;
         else {
             HashEntry entry = table[hash];
             while (entry != null && !entry.getKey().equals(key)){
@@ -37,14 +36,14 @@ public class HashTable<K, V> {
             }
 
             if (entry == null) {
-                return -1;
+                return null;
             }else {
-                return entry.getValue();
+                return (V)entry.getValue();
             }
         }
     }
 
-    public void put(String key, int value){
+    public void put(K key, V value){
         int hash = hash(key) % TABLE_SIZE;
         if (table[hash] == null) {
             table[hash] = new HashEntry(key, value);
@@ -63,7 +62,7 @@ public class HashTable<K, V> {
         // check size here and resize if necessary
     }
 
-    public void remove (String key){
+    public void remove (K key){
         int hash = hash(key) % TABLE_SIZE;
 
         if (table[hash] != null){
@@ -83,8 +82,8 @@ public class HashTable<K, V> {
         }
     }
 
-    private int hash(String s){
-        int hashVal = s.hashCode();
+    private int hash(K key){
+        int hashVal = key.hashCode();
         hashVal %= TABLE_SIZE;
         if (hashVal < 0) hashVal += TABLE_SIZE;
         return hashVal;
@@ -102,4 +101,5 @@ public class HashTable<K, V> {
     }
 
 }
+
 

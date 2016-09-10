@@ -2,25 +2,25 @@
 /**
  * Created by manmeet on 9/7/16.
  */
-public class HashEntry {
-    private String key;
-    private int value;
+public class HashEntry<K,V> {
+    private K key;
+    private V value;
     HashEntry next;
 
-    HashEntry(String key, int value) {
+    HashEntry(K key, V value) {
         this.key = key;
         this.value = value;
         this.next = null;
     }
 
-    public String getKey() {
+    public K getKey() {
         return key;
     }
 
-    public int getValue() {
+    public V getValue() {
         return value;
     }
-    public void setValue(int val){
+    public void setValue(V val){
         this.value = val;
     }
 
