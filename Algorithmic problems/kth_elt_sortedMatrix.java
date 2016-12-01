@@ -23,7 +23,6 @@ public int kthSmallest(int[][] matrix, int k) {
             int hsize = matrix.length;
             int vsize = matrix[0].length;
             int m = 0;
-            int n = k;
             while (k >= vsize){
                 k/=vsize;
                 m++;
